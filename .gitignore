@@ -1,0 +1,9 @@
+.collabignore
+.vs/
+Arena of the Cursed.sln
+ArenaOfTheCursed.sln
+Assembly-CSharp-Editor.csproj
+Assembly-CSharp.csproj
+Library/
+Temp/
+obj/
