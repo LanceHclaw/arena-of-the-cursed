@@ -56,7 +56,7 @@ public class PlayerUI : MonoBehaviour
             filler.filler.localScale = new Vector3(1f, percentage, 1f);
         }
 
-        healthDisplay.text = status.health.ToString();
+        healthDisplay.text = status.localHealth.ToString();
         enduranceFiller.localScale = new Vector3(movement.endurancePercentage, 1f, 1f);
         healthFiller.localScale = new Vector3(1f, status.healthPercentage, 1f);
     }

@@ -152,7 +152,7 @@ public class MagicSkills : MonoBehaviour
     void CastWithstand()
     {
         //add playing the particle effects somewhere
-        selfStatus.health = Math.Min(selfStatus.health + withstandHealing, Status.maxHealth);
+        selfStatus.localHealth = Math.Min(selfStatus.localHealth + withstandHealing, Status.maxHealth);
         selfStatus.RemoveCondition(StatusEffects.Conditions.Crippled);
     }
 

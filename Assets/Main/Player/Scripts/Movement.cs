@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public class Movement : MonoBehaviour
+public class Movement : Bolt.EntityBehaviour<IPlayerCharacterState>
 {
 
     [SerializeField] private Transform target;
@@ -27,12 +27,17 @@ public class Movement : MonoBehaviour
     public Vector3 movement;
     public Vector3 prevMovement;
 
-    private void Start()
+    public override void Attached()
     {
-        vertSpeed = minFall;
-        controller = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();
-        status = GetComponent<Status>();
+        state.SetTransforms(state.PlayerCharacterTransform, gameObject.transform);
+
+        if (entity.IsOwner)
+        {
+            vertSpeed = minFall;
+            controller = GetComponent<CharacterController>();
+            animator = GetComponent<Animator>();
+            status = GetComponent<Status>();
+        }
     }
 
     private void FixedUpdate()
@@ -41,7 +46,7 @@ public class Movement : MonoBehaviour
         Debug.Log(endurance);
     }
 
-    void Update()
+    public override void SimulateOwner()
     {
         endurancePercentage = endurance / maxEndurance;
         //if switches to AddForce, need to remove dodge and jump functions from Update if already in the process (otw will turn into a space rocket)
@@ -58,7 +63,7 @@ public class Movement : MonoBehaviour
             Jump();
             Dodge();
 
-            movement *= Time.deltaTime;
+            movement *= BoltNetwork.FrameDeltaTime;
 
             if (animator.GetBool("Back") && !animator.GetBool("dodging"))
             {
@@ -94,7 +99,7 @@ public class Movement : MonoBehaviour
         else
         {
             animator.SetBool("inAir", true);
-            vertSpeed += gravity * 5 * Time.deltaTime;
+            vertSpeed += gravity * 5 * BoltNetwork.FrameDeltaTime;
             if (vertSpeed < terminalVelocity)
             {
                 vertSpeed = terminalVelocity;

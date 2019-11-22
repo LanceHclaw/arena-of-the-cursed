@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Status : MonoBehaviour
+public class Status : Bolt.EntityBehaviour<IPlayerCharacterState>
 {
     public const int maxHealth = 2000;
-    public int health = 2000;
+    public int localHealth = 2000;
     public float healthPercentage;
 
     public StatusEffects.Conditions currentConditions;
@@ -19,15 +19,32 @@ public class Status : MonoBehaviour
 
     public bool canAttack;
 
-    private void Start()
+    public override void Attached()
     {
-        animator = GetComponent<Animator>();
-        combatManager = GameObject.FindGameObjectWithTag("CombatManager");
+        state.Health = localHealth;
+
+        state.AddCallback("Health", HealthCallback);
+
+        if (entity.IsOwner)
+        {
+            animator = GetComponent<Animator>();
+            combatManager = GameObject.FindGameObjectWithTag("CombatManager");
+        }
+    }
+
+    private void HealthCallback()
+    {
+        localHealth = state.Health;
+        
+        if (localHealth <= 0)
+        {
+            BoltNetwork.Destroy(gameObject);
+        }
     }
 
     private void Update()
     {
-        healthPercentage = health / maxHealth;
+        healthPercentage = localHealth / maxHealth;
 
         canAttack = animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded") &&
             (animator.GetCurrentAnimatorStateInfo(1).IsName("2Hand-Sword-Idle") || 
@@ -50,7 +67,7 @@ public class Status : MonoBehaviour
             RemoveCondition(key);
         }
 
-        if (health <= 0) animator.SetBool("Dead", true);
+        if (localHealth <= 0) animator.SetBool("Dead", true);
 
         if (IsConditionPresent(StatusEffects.Conditions.Stunned) && !animator.GetBool("stunned"))
         {

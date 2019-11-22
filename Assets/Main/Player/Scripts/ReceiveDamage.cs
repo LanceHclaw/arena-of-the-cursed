@@ -13,7 +13,7 @@ public class ReceiveDamage : MonoBehaviour {
     {
         if (!animator.GetBool("Dead") && !animator.GetBool("dodging"))
         {
-            GetComponent<Status>().health -= damage;
+            GetComponent<Status>().localHealth -= damage;
             animator.Play("GetHit", 0, 0);
         }
     }
