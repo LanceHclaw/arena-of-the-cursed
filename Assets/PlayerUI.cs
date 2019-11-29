@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PlayerUI : MonoBehaviour
+public class PlayerUI : Bolt.EntityBehaviour<IPlayerCharacterState>
 {
     public RectTransform[] buttonFillers;
 
@@ -42,7 +42,7 @@ public class PlayerUI : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public override void SimulateOwner()
     {
         foreach (WeaponSkillCD filler in weaponSkillFillers)
         {

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +15,19 @@ public class NetworkCallbacks : Bolt.GlobalEventListener
     {
         Vector3 spawnPos = new Vector3(Random.Range(fromX, toX), 0.3f, Random.Range(fromZ, toZ));
 
-        BoltNetwork.Instantiate(BoltPrefabs.Player_1, spawnPos, Quaternion.identity);
+        var inst = BoltNetwork.Instantiate(BoltPrefabs.Player_1, spawnPos, Quaternion.identity);
+
+        if (inst.IsOwner)
+        {
+            var cam = inst.transform.Find("Camera");
+            var cmLook = inst.transform.Find("CM FreeLook");
+            var body = inst.transform.Find("Body");
+
+            cam.gameObject.SetActive(true);
+            cmLook.gameObject.SetActive(true);
+
+            cmLook.gameObject.GetComponent<CinemachineFreeLook>().Follow = body;
+            cmLook.gameObject.GetComponent<CinemachineFreeLook>().LookAt = body;
+        }
     }
 }

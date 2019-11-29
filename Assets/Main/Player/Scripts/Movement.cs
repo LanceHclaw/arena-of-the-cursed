@@ -30,6 +30,8 @@ public class Movement : Bolt.EntityBehaviour<IPlayerCharacterState>
     public override void Attached()
     {
         state.SetTransforms(state.PlayerCharacterTransform, gameObject.transform);
+        state.SetAnimator(GetComponent<Animator>());
+        state.Animator.applyRootMotion = entity.IsOwner;
 
         if (entity.IsOwner)
         {

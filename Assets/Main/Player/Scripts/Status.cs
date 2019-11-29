@@ -42,7 +42,7 @@ public class Status : Bolt.EntityBehaviour<IPlayerCharacterState>
         }
     }
 
-    private void Update()
+    public override void SimulateOwner()
     {
         healthPercentage = localHealth / maxHealth;
 
