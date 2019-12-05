@@ -1,14 +1,16 @@
 ﻿using UnityEngine;
 
-public class Targeting : MonoBehaviour
+public class Targeting : Bolt.EntityBehaviour<IPlayerCharacterState>
 {
+    public AssignPlayers playerListScript;
     public GameObject Enemy;
 
-    GameObject gameManager;
-
-    private void Awake()
+    public override void Attached()
     {
-        gameManager = GameObject.FindGameObjectWithTag("GameManager");
-        gameManager.GetComponent<AssignPlayers>().AddPlayer(gameObject);
+        playerListScript = GameObject.FindGameObjectWithTag("GameManager").GetComponent<AssignPlayers>();
+
+        Enemy = playerListScript.dummy;
+
+        playerListScript.AddPlayer(gameObject);
     }
 }

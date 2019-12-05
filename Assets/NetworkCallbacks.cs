@@ -11,7 +11,11 @@ public class NetworkCallbacks : Bolt.GlobalEventListener
     public float fromZ = -4.793188f;
     public float toX = 27.7528f;
     public float toZ = 9.906813f;
-    public override void SceneLoadLocalDone(string scene)
+
+    private BoltEntity owner;
+    private BoltEntity client;
+
+public override void SceneLoadLocalDone(string scene)
     {
         Vector3 spawnPos = new Vector3(Random.Range(fromX, toX), 0.3f, Random.Range(fromZ, toZ));
 
@@ -19,6 +23,8 @@ public class NetworkCallbacks : Bolt.GlobalEventListener
 
         if (inst.IsOwner)
         {
+            owner = inst;
+
             var cam = inst.transform.Find("Camera");
             var cmLook = inst.transform.Find("CM FreeLook");
             var body = inst.transform.Find("Body");
@@ -28,6 +34,17 @@ public class NetworkCallbacks : Bolt.GlobalEventListener
 
             cmLook.gameObject.GetComponent<CinemachineFreeLook>().Follow = body;
             cmLook.gameObject.GetComponent<CinemachineFreeLook>().LookAt = body;
+        }
+
+        else
+        {
+            client = inst;
+        }
+
+        if (owner && client)
+        {
+            owner.GetComponent<Targeting>().Enemy = client;
+            client.GetComponent<Targeting>().Enemy = owner;
         }
     }
 }

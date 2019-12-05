@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponSkills : MonoBehaviour {
+public class WeaponSkills : Bolt.EntityBehaviour<IPlayerCharacterState> {
 
     Animator animator;
     CharacterController controller;
@@ -15,7 +15,7 @@ public class WeaponSkills : MonoBehaviour {
 
     MeleeSkillsManager manager;
 
-	void Start () {
+	public override void Attached () {
         skillCooldowns.Add(WeaponSkillNames.SweepingAttack, Time.time);
         skillCooldowns.Add(WeaponSkillNames.StunningAttack, Time.time);
         skillCooldowns.Add(WeaponSkillNames.CripplingAttack, Time.time);
@@ -25,11 +25,12 @@ public class WeaponSkills : MonoBehaviour {
         controller = GetComponent<CharacterController>();
         status = GetComponent<Status>();
 
+        state.SetAnimator(animator);
         manager = GameObject.FindGameObjectWithTag("CombatManager").GetComponent<MeleeSkillsManager>();
     }
 	
 	// Update is called once per frame
-	void Update () {
+	public override void SimulateOwner () {
         if (controller.isGrounded)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -79,8 +80,8 @@ public class WeaponSkills : MonoBehaviour {
 
     void UseSkill1()
     {
-        animator.SetInteger("autoChain", ((GetAutoattackNumber(1) + 1) % 3));
-        if (animator.GetInteger("autoChain") == 0 && status.canAttack)
+        animator.SetInteger("autoChain", (GetAutoattackNumber(1) + 1) % 3);
+        if (state.autoChain == 0 && status.canAttack)
         {
             animator.Play("Attack6", 1, 0);
         }
@@ -125,19 +126,19 @@ public class WeaponSkills : MonoBehaviour {
     }
 
     //Methods below just call combatManager, which executes results
-    void CallSkill1(int comboNum)
+    public void CallSkill1(int comboNum)
     {
         manager.ChainAttack(gameObject, enemy, comboNum);
     }
-    void CallSweepingAttack(int attackNum)
+    public void CallSweepingAttack(int attackNum)
     {
         manager.SweepingAttack(gameObject, enemy, attackNum);
     }
-    void CallStunningAttack()
+    public void CallStunningAttack()
     {
         manager.StunningAttack(gameObject, enemy);
     }
-    void CallCripplingAttack(int attackNum)
+    public void CallCripplingAttack(int attackNum)
     {
         manager.CripplingAttack(gameObject, enemy, attackNum);
     }

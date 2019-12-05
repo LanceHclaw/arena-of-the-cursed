@@ -2,6 +2,7 @@
 
 public class AssignPlayers : MonoBehaviour
 {
+    public GameObject dummy;
     public GameObject player1;
     public GameObject player2;
     private bool allAssigned = false;
@@ -12,11 +13,10 @@ public class AssignPlayers : MonoBehaviour
         else
         {
             player2 = player;
-            player2.GetComponent<Targeting>().Enemy = player1;
 
-            
-            //commented out for dummy testing (It is working script, uncomment before release)
+            player2.GetComponent<Targeting>().Enemy = player1;
             player1.GetComponent<Targeting>().Enemy = player2;
+
             allAssigned = true;
         }
     }

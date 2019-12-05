@@ -4683,12 +4683,12 @@ GameObject:
   - component: {fileID: 198433943929519872}
   - component: {fileID: 199651061282982800}
   m_Layer: 0
-  m_Name: IceLance
+  m_Name: ConeOfCold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4897860267909952
 Transform:
   m_ObjectHideFlags: 0

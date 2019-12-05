@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AC_movement : MonoBehaviour
+public class AC_movement : Bolt.EntityBehaviour<IPlayerCharacterState>
 {
 
-    Animator animator;
+    public Animator animator;
     CharacterController controller;
     Movement moveScript;
 
@@ -17,15 +17,16 @@ public class AC_movement : MonoBehaviour
     Vector3 currVector = new Vector3(0, 0, 0);
 
     // Use this for initialization
-    void Start()
+    public override void Attached()
     {
-        animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
         moveScript = GetComponent<Movement>();
+        animator = GetComponent<Animator>();
+        state.SetAnimator(animator);
     }
 
     // Update is called once per frame
-    void Update()
+    public override void SimulateOwner()
     {
         enableRM = !animator.GetBool("canMove");
         animator.applyRootMotion = enableRM;
@@ -37,6 +38,11 @@ public class AC_movement : MonoBehaviour
 
         animator.SetFloat("RunX", Input.GetAxis("Horizontal"));
         animator.SetFloat("RunZ", Input.GetAxis("Vertical"));
+        
+        /*
+        animator.SetFloat("RunX", Input.GetAxis("Horizontal"));
+        animator.SetFloat("RunZ", Input.GetAxis("Vertical"));
+        */
     }
 
     void PlayAnim(Vector3 vector)

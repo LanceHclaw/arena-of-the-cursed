@@ -3273,6 +3273,7 @@
         {
           "Name": "PlayerCharacterTransform",
           "Enabled": true,
+          "Expanded": true,
           "ReplicationMode": 1,
           "Priority": 1,
           "PropertyType": {
@@ -3364,7 +3365,6 @@
             "ExtrapolationErrorTolerance": 0.25,
             "_ExtrapolationCorrectionFrames": 6,
             "ExtrapolationMaxFrames": 9,
-            "MecanimDirection": 1,
             "SnapMagnitude": 10.0
           }
         },
@@ -3382,7 +3382,6 @@
             "_ExtrapolationCorrectionFrames": 6,
             "ExtrapolationMaxFrames": 9,
             "MecanimMode": 1,
-            "MecanimDirection": 1,
             "SnapMagnitude": 10.0
           }
         },
@@ -3399,7 +3398,6 @@
             "_ExtrapolationCorrectionFrames": 6,
             "ExtrapolationMaxFrames": 9,
             "MecanimMode": 1,
-            "MecanimDirection": 1,
             "SnapMagnitude": 10.0
           }
         },
@@ -3416,7 +3414,6 @@
             "_ExtrapolationCorrectionFrames": 6,
             "ExtrapolationMaxFrames": 9,
             "MecanimMode": 1,
-            "MecanimDirection": 1,
             "SnapMagnitude": 10.0
           }
         },
@@ -3433,7 +3430,6 @@
             "_ExtrapolationCorrectionFrames": 6,
             "ExtrapolationMaxFrames": 9,
             "MecanimMode": 1,
-            "MecanimDirection": 1,
             "SnapMagnitude": 10.0
           }
         },
@@ -3451,7 +3447,6 @@
             "_ExtrapolationCorrectionFrames": 6,
             "ExtrapolationMaxFrames": 9,
             "MecanimMode": 1,
-            "MecanimDirection": 1,
             "SnapMagnitude": 10.0
           }
         },
@@ -3477,7 +3472,6 @@
             "_ExtrapolationCorrectionFrames": 6,
             "ExtrapolationMaxFrames": 9,
             "MecanimMode": 1,
-            "MecanimDirection": 1,
             "SnapMagnitude": 10.0
           }
         },
@@ -3503,7 +3497,6 @@
             "_ExtrapolationCorrectionFrames": 6,
             "ExtrapolationMaxFrames": 9,
             "MecanimMode": 1,
-            "MecanimDirection": 1,
             "SnapMagnitude": 10.0
           }
         },
@@ -3520,7 +3513,6 @@
             "_ExtrapolationCorrectionFrames": 6,
             "ExtrapolationMaxFrames": 9,
             "MecanimMode": 1,
-            "MecanimDirection": 1,
             "SnapMagnitude": 10.0
           }
         },
@@ -3537,7 +3529,6 @@
             "_ExtrapolationCorrectionFrames": 6,
             "ExtrapolationMaxFrames": 9,
             "MecanimMode": 1,
-            "MecanimDirection": 1,
             "SnapMagnitude": 10.0
           }
         },
@@ -3554,7 +3545,6 @@
             "_ExtrapolationCorrectionFrames": 6,
             "ExtrapolationMaxFrames": 9,
             "MecanimMode": 1,
-            "MecanimDirection": 1,
             "SnapMagnitude": 10.0
           }
         },
@@ -3571,7 +3561,6 @@
             "_ExtrapolationCorrectionFrames": 6,
             "ExtrapolationMaxFrames": 9,
             "MecanimMode": 1,
-            "MecanimDirection": 1,
             "SnapMagnitude": 10.0
           }
         }

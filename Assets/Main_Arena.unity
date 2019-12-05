@@ -1216,6 +1216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2000
+  status: {fileID: 0}
 --- !u!114 &802277013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1228,10 +1229,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e55852edc3364ea40a1f0975a8a36396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 2000
+  localHealth: 2000
   healthPercentage: 0
   currentConditions: 0
-  combatManager: {fileID: 0}
+  combatManager: {fileID: 1460371814}
   quicknessLF: {fileID: 0}
   quicknessRF: {fileID: 0}
   canAttack: 0
@@ -3698,6 +3699,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 244f65b704bb67c408dc73eced53e6bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dummy: {fileID: 802277010}
   player1: {fileID: 0}
   player2: {fileID: 0}
 --- !u!1 &1690455550
@@ -3811,7 +3813,7 @@ GameObject:
   - component: {fileID: 1742189203}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

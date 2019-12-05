@@ -5,6 +5,7 @@ public class Movement : Bolt.EntityBehaviour<IPlayerCharacterState>
 {
 
     [SerializeField] private Transform target;
+    [SerializeField] private Camera cameraComp;
 
     Animator animator;
     Status status;
@@ -12,6 +13,7 @@ public class Movement : Bolt.EntityBehaviour<IPlayerCharacterState>
     public float moveSpeed = 4.0f;
     public float dodgeSpeed = 4.5f;
     private CharacterController controller;
+    
 
     public float jumpSpeed = 15.0f;
     public float gravity = -9.8f;
@@ -31,7 +33,7 @@ public class Movement : Bolt.EntityBehaviour<IPlayerCharacterState>
     {
         state.SetTransforms(state.PlayerCharacterTransform, gameObject.transform);
         state.SetAnimator(GetComponent<Animator>());
-        state.Animator.applyRootMotion = entity.IsOwner;
+        //state.Animator.applyRootMotion = entity.IsOwner;
 
         if (entity.IsOwner)
         {
@@ -44,22 +46,25 @@ public class Movement : Bolt.EntityBehaviour<IPlayerCharacterState>
 
     private void FixedUpdate()
     {
-        endurance = Mathf.Clamp(endurance + enduranceRecoveryRate, 0, maxEndurance);
-        Debug.Log(endurance);
+        if (entity.IsOwner)
+        {
+            endurance = Mathf.Clamp(endurance + enduranceRecoveryRate, 0, maxEndurance);
+        }
     }
 
     public override void SimulateOwner()
     {
+        Debug.Log(controller.isGrounded);
         endurancePercentage = endurance / maxEndurance;
-        //if switches to AddForce, need to remove dodge and jump functions from Update if already in the process (otw will turn into a space rocket)
-        if (animator.GetBool("dodging"))
+        
+        if (state.dodging)
         {
             Vector3 dodgeMovement;
             dodgeMovement = prevMovement;
             dodgeMovement.y = 0;
             controller.Move(dodgeMovement);
         }
-        else if (animator.GetBool("canMove"))
+        else if (state.canMove)
         {
             Move();
             Jump();
@@ -67,7 +72,7 @@ public class Movement : Bolt.EntityBehaviour<IPlayerCharacterState>
 
             movement *= BoltNetwork.FrameDeltaTime;
 
-            if (animator.GetBool("Back") && !animator.GetBool("dodging"))
+            if (state.Back && !state.dodging)
             {
                 movement.x *= 0.65f;
                 movement.z *= 0.45f;
@@ -85,14 +90,14 @@ public class Movement : Bolt.EntityBehaviour<IPlayerCharacterState>
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                animator.Play("2Hand-Sword-Jump", 0, 0);
+                state.Animator.Play("2Hand-Sword-Jump", 0, 0);
                 vertSpeed = jumpSpeed;
             }
             else
             {
                 vertSpeed = minFall;
 
-                if (animator.GetBool("inAir"))
+                if (state.inAir)
                 {
                     animator.SetBool("inAir", false);
                 }
@@ -112,7 +117,7 @@ public class Movement : Bolt.EntityBehaviour<IPlayerCharacterState>
 
     void Move()
     {
-        Vector3 cameraRot = Camera.main.transform.forward;
+        Vector3 cameraRot = cameraComp.transform.forward;
         cameraRot.y = 0;
         movement = Vector3.zero;
         float horInput = Input.GetAxis("Horizontal");
@@ -136,7 +141,7 @@ public class Movement : Bolt.EntityBehaviour<IPlayerCharacterState>
                 animator.SetBool("Back", true);
             }
             else
-            { 
+            {
                 animator.SetBool("Back", false);
             }
             transform.rotation = Quaternion.LookRotation(cameraRot);
@@ -146,7 +151,7 @@ public class Movement : Bolt.EntityBehaviour<IPlayerCharacterState>
     void Dodge()
     {
         //try using AddForce instead of speed changes - may be more consistent and remove jump+dodge bug
-        if (Input.GetKeyDown(KeyCode.V) && !animator.GetBool("inAir"))
+        if (Input.GetKeyDown(KeyCode.V) && !state.inAir)
         {
             if (endurance >= 50)
             {

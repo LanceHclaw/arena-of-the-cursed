@@ -22,23 +22,26 @@ public class PlayerUI : Bolt.EntityBehaviour<IPlayerCharacterState>
     // Start is called before the first frame update
     void Start()
     {
-        healthDisplay = GetComponentInChildren<TextMeshProUGUI>();
-        movement = GetComponentInParent<Movement>();
-        status = GetComponentInParent<Status>();
-        weaponSkills = GetComponentInParent<WeaponSkills>();
-        magicSkills = GetComponentInParent<MagicSkills>();
-
-        SetupArrays();
-
-        foreach (WeaponSkillCD filler in weaponSkillFillers)
+        if (entity.IsOwner)
         {
-            filler.filler.localScale = new Vector3(1f, 0f, 1f);
-        }
+            healthDisplay = GetComponentInChildren<TextMeshProUGUI>();
+            movement = GetComponentInParent<Movement>();
+            status = GetComponentInParent<Status>();
+            weaponSkills = GetComponentInParent<WeaponSkills>();
+            magicSkills = GetComponentInParent<MagicSkills>();
 
-        foreach (MagicSkillCD filler in magicSkillFillers)
-        {
-            filler.filler.localScale = new Vector3(1f, 0f, 1f);
-        }
+            SetupArrays();
+
+            foreach (WeaponSkillCD filler in weaponSkillFillers)
+            {
+                filler.filler.localScale = new Vector3(1f, 0f, 1f);
+            }
+
+            foreach (MagicSkillCD filler in magicSkillFillers)
+            {
+                filler.filler.localScale = new Vector3(1f, 0f, 1f);
+            }
+        } 
     }
 
     // Update is called once per frame

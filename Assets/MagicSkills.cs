@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagicSkills : MonoBehaviour
+public class MagicSkills : Bolt.EntityBehaviour<IPlayerCharacterState>
 {
     Animator animator;
     CharacterController controller;
@@ -33,7 +33,7 @@ public class MagicSkills : MonoBehaviour
     public GameObject coneOfColdParticles;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Attached()
     {
         skillCooldowns.Add(MagicSkillNames.ConeOfCold, Time.time);
         skillCooldowns.Add(MagicSkillNames.Fireball, Time.time);
@@ -49,7 +49,7 @@ public class MagicSkills : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public override void SimulateOwner()
     {
         if (selfStatus.canAttack)
         {
