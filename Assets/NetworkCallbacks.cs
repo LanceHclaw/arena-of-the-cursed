@@ -28,9 +28,11 @@ public override void SceneLoadLocalDone(string scene)
             var cam = inst.transform.Find("Camera");
             var cmLook = inst.transform.Find("CM FreeLook");
             var body = inst.transform.Find("Body");
+            var ui = inst.transform.Find("UI");
 
             cam.gameObject.SetActive(true);
             cmLook.gameObject.SetActive(true);
+            ui.gameObject.SetActive(true);
 
             cmLook.gameObject.GetComponent<CinemachineFreeLook>().Follow = body;
             cmLook.gameObject.GetComponent<CinemachineFreeLook>().LookAt = body;

@@ -20,15 +20,15 @@ public class PlayerUI : Bolt.EntityBehaviour<IPlayerCharacterState>
     public TextMeshProUGUI healthDisplay;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Attached()
     {
         if (entity.IsOwner)
         {
-            healthDisplay = GetComponentInChildren<TextMeshProUGUI>();
-            movement = GetComponentInParent<Movement>();
-            status = GetComponentInParent<Status>();
-            weaponSkills = GetComponentInParent<WeaponSkills>();
-            magicSkills = GetComponentInParent<MagicSkills>();
+            healthDisplay = gameObject.GetComponentInChildren<TextMeshProUGUI>();
+            movement = gameObject.GetComponentInParent<Movement>();
+            status = gameObject.GetComponentInParent<Status>();
+            weaponSkills = gameObject.GetComponentInParent<WeaponSkills>();
+            magicSkills = gameObject.GetComponentInParent<MagicSkills>();
 
             SetupArrays();
 
@@ -67,20 +67,20 @@ public class PlayerUI : Bolt.EntityBehaviour<IPlayerCharacterState>
     private void SetupArrays()
     {
         weaponSkillFillers.Add(new WeaponSkillCD { filler = buttonFillers[0], name = WeaponSkillNames.SweepingAttack });
-        Debug.Log("Added weaponSkill");
+        //Debug.Log("Added weaponSkill");
         weaponSkillFillers.Add(new WeaponSkillCD { filler = buttonFillers[1], name = WeaponSkillNames.StunningAttack });
-        Debug.Log("Added weaponSkill");
+        //Debug.Log("Added weaponSkill");
         weaponSkillFillers.Add(new WeaponSkillCD { filler = buttonFillers[2], name = WeaponSkillNames.CripplingAttack });
-        Debug.Log("Added weaponSkill");
+        //Debug.Log("Added weaponSkill");
 
         magicSkillFillers.Add(new MagicSkillCD { filler = buttonFillers[3], name = MagicSkillNames.RocketBoots });
-        Debug.Log("Added magicSkill");
+        //Debug.Log("Added magicSkill");
         magicSkillFillers.Add(new MagicSkillCD { filler = buttonFillers[4], name = MagicSkillNames.ConeOfCold });
-        Debug.Log("Added magicSkill");
+        //Debug.Log("Added magicSkill");
         magicSkillFillers.Add(new MagicSkillCD { filler = buttonFillers[5], name = MagicSkillNames.Fireball });
-        Debug.Log("Added magicSkill");
+        //Debug.Log("Added magicSkill");
         magicSkillFillers.Add(new MagicSkillCD { filler = buttonFillers[6], name = MagicSkillNames.Withstand });
-        Debug.Log("Added magicSkill");
+        //Debug.Log("Added magicSkill");
     }
 }
 public struct WeaponSkillCD

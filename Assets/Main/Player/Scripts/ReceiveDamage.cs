@@ -1,20 +1,18 @@
 ﻿using UnityEngine;
 
-public class ReceiveDamage : MonoBehaviour {
+public class ReceiveDamage : Bolt.EntityBehaviour<IPlayerCharacterState> {
 
     Animator animator;
 
-    private void Start()
+    public override void Attached()
     {
-        animator = GetComponent<Animator>();
+        animator = gameObject.GetComponent<Animator>();
     }
-
     public void Damage(int damage)
     {
         if (!animator.GetBool("Dead") && !animator.GetBool("dodging"))
         {
-            GetComponent<Status>().localHealth -= damage;
-            animator.Play("GetHit", 0, 0);
+            state.Health -= damage;
         }
     }
 }

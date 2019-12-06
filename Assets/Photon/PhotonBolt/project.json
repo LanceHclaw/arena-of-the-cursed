@@ -3353,6 +3353,7 @@
         {
           "Name": "Health",
           "Enabled": true,
+          "Expanded": true,
           "ReplicationMode": 1,
           "Priority": 1,
           "PropertyType": {

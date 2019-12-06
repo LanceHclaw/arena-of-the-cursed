@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Status : Bolt.EntityBehaviour<IPlayerCharacterState>
 {
-    public const int maxHealth = 2000;
+    public static int maxHealth = 2000;
     public int localHealth = 2000;
     public float healthPercentage;
 
@@ -36,15 +36,15 @@ public class Status : Bolt.EntityBehaviour<IPlayerCharacterState>
     {
         localHealth = state.Health;
         
-        if (localHealth <= 0)
+        /*if (localHealth <= 0)
         {
             BoltNetwork.Destroy(gameObject);
-        }
+        }*/
     }
 
     public override void SimulateOwner()
     {
-        healthPercentage = localHealth / maxHealth;
+        healthPercentage = localHealth / (float)maxHealth;
 
         canAttack = animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded") &&
             (animator.GetCurrentAnimatorStateInfo(1).IsName("2Hand-Sword-Idle") || 
@@ -71,7 +71,7 @@ public class Status : Bolt.EntityBehaviour<IPlayerCharacterState>
 
         if (IsConditionPresent(StatusEffects.Conditions.Stunned) && !animator.GetBool("stunned"))
         {
-            animator.Play("Stunned", 0, 0);
+            //animator.Play("Stunned", 0, 0);
             animator.SetBool("stunned", true);
         }
         else if (!IsConditionPresent(StatusEffects.Conditions.Stunned))

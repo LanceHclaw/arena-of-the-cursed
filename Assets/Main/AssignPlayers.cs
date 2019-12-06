@@ -21,12 +21,12 @@ public class AssignPlayers : MonoBehaviour
         }
     }
 
-    private void Update()
+    /*private void Update()
     {
         if (allAssigned)
         {
             if (player1.GetComponent<Status>().localHealth <= 0) Debug.Log("Player2 wins!");
             else if (player2.GetComponent<Status>().localHealth <= 0) Debug.Log("Player1 wins!");
         }
-    }
+    }*/
 }

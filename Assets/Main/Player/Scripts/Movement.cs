@@ -54,7 +54,7 @@ public class Movement : Bolt.EntityBehaviour<IPlayerCharacterState>
 
     public override void SimulateOwner()
     {
-        Debug.Log(controller.isGrounded);
+        //Debug.Log(controller.isGrounded);
         endurancePercentage = endurance / maxEndurance;
         
         if (state.dodging)
@@ -178,7 +178,7 @@ public class Movement : Bolt.EntityBehaviour<IPlayerCharacterState>
         }
     }
 
-    void StopDodge()
+    public void StopDodge()
     {
         animator.SetBool("dodging", false);
     }
