@@ -103471,6 +103471,14 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0.033333335
+    functionName: ResetCurrentSkill
+    data: 
+    objectReferenceParameter: {fileID: 11500000, guid: fa7d93d4300952042b98578d68a7795a,
+      type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.53333336
     functionName: CallSweepingAttack
     data: 

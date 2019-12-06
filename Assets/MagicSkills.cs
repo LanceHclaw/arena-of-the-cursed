@@ -6,7 +6,6 @@ public class MagicSkills : Bolt.EntityBehaviour<IPlayerCharacterState>
 {
     Animator animator;
     CharacterController controller;
-    GameObject enemy;
 
     Dictionary<MagicSkillNames, float> skillCooldowns = new Dictionary<MagicSkillNames, float>();
 
@@ -41,7 +40,6 @@ public class MagicSkills : Bolt.EntityBehaviour<IPlayerCharacterState>
         skillCooldowns.Add(MagicSkillNames.Withstand, Time.time);
 
         selfStatus = GetComponent<Status>();
-        enemy = GetComponent<Targeting>().Enemy;
         animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
 
@@ -107,20 +105,23 @@ public class MagicSkills : Bolt.EntityBehaviour<IPlayerCharacterState>
     {
         skillCooldowns[MagicSkillNames.ConeOfCold] = Time.time + coneOfColdCooldown;
         animator.SetBool("attacking", true);
-        animator.Play("ConeOfCold", 1, 0);
+        animator.SetTrigger("ConeOfCold");
+        //state.Animator.Play("ConeOfCold", 1, 0);
     }
 
     void UseMagicSkill2()
     {
         skillCooldowns[MagicSkillNames.Fireball] = Time.time + fireballCooldown;
         animator.SetBool("attacking", true);
-        animator.Play("Fireball", 1, 0);
+        animator.SetTrigger("Fireball");
+        //state.Animator.Play("Fireball", 1, 0);
     }
     void UseMagicSkill3()
     {
         skillCooldowns[MagicSkillNames.Withstand] = Time.time + WithstandCooldown;
         animator.SetBool("attacking", true);
-        animator.Play("Withstand", 1, 0);
+        animator.SetTrigger("Withstand");
+        //state.Animator.Play("Withstand", 1, 0);
     }
 
     void UseMagicSkill4()
@@ -129,27 +130,27 @@ public class MagicSkills : Bolt.EntityBehaviour<IPlayerCharacterState>
         selfStatus.ApplyCondition(StatusEffects.Conditions.Quickened, rocketBootsDuration);
     }
 
-    void CastFireball()
+    public void CastFireball()
     {
         GameObject fireballClone;
         fireballClone = Instantiate(fireballPrefab, spellOrigin.transform.position, Quaternion.identity);
-        fireballClone.GetComponent<FireballScript>().enemy = enemy;
+        fireballClone.GetComponent<FireballScript>().enemy = gameObject.GetComponent<Targeting>().Enemy;
         fireballClone.GetComponent<FireballScript>().caster = gameObject;
     }
 
-    void CastConeOfCold()
+    public void CastConeOfCold()
     {
         //initiate the particles and call the manager for damage and conditions
         coneOfColdParticles.SetActive(true);
-        manager.ConeOfCold(spellOrigin, enemy);
+        manager.ConeOfCold(spellOrigin, gameObject.GetComponent<Targeting>().Enemy);
     }
 
-    void DeactivateConeOfCold()
+    public void DeactivateConeOfCold()
     {
         coneOfColdParticles.SetActive(false);
     }
 
-    void CastWithstand()
+    public void CastWithstand()
     {
         //add playing the particle effects somewhere
         selfStatus.localHealth = Math.Min(selfStatus.localHealth + withstandHealing, Status.maxHealth);

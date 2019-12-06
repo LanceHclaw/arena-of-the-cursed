@@ -61,7 +61,7 @@ public class AC_movement : Bolt.EntityBehaviour<IPlayerCharacterState>
 
     Vector3 GetVector() { return moveScript.movement; }
 
-    void StopMotion()
+    public void StopMotion()
     {
         animator.SetBool("canMove", false);
     }

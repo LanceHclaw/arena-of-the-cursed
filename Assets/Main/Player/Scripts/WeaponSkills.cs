@@ -5,7 +5,6 @@ public class WeaponSkills : Bolt.EntityBehaviour<IPlayerCharacterState> {
 
     Animator animator;
     CharacterController controller;
-    GameObject enemy;
     Status status;
 
     Dictionary<WeaponSkillNames, float> skillCooldowns = new Dictionary<WeaponSkillNames, float>();
@@ -20,7 +19,6 @@ public class WeaponSkills : Bolt.EntityBehaviour<IPlayerCharacterState> {
         skillCooldowns.Add(WeaponSkillNames.StunningAttack, Time.time);
         skillCooldowns.Add(WeaponSkillNames.CripplingAttack, Time.time);
 
-        enemy = GetComponent<Targeting>().Enemy;
         animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
         status = GetComponent<Status>();
@@ -83,7 +81,8 @@ public class WeaponSkills : Bolt.EntityBehaviour<IPlayerCharacterState> {
         animator.SetInteger("autoChain", (GetAutoattackNumber(1) + 1) % 3);
         if (state.autoChain == 0 && status.canAttack)
         {
-            animator.Play("Attack6", 1, 0);
+            animator.SetTrigger("StartChainAttack");
+            //state.Animator.Play("Attack6", 1, 0);
         }
     }
 
@@ -108,39 +107,50 @@ public class WeaponSkills : Bolt.EntityBehaviour<IPlayerCharacterState> {
     {
         skillCooldowns[WeaponSkillNames.SweepingAttack] = Time.time + sweepingAttackCooldown;
         animator.SetBool("attacking", true);
-        animator.Play("SweepingAttack", 2, 0);
+        animator.SetTrigger("SweepingAttack");
+        //animator.SetInteger("UsingSkill", 2);
+        //state.Animator.Play("SweepingAttack", 2, 0);
     }
 
     void UseSkill3()
     {
         skillCooldowns[WeaponSkillNames.StunningAttack] = Time.time + stunningAttackCooldown;
         animator.SetBool("attacking", true);
-        animator.Play("LungeAttack", 2, 0);
+        animator.SetTrigger("StunningAttack");
+        //animator.SetInteger("UsingSkill", 3);
+        //state.Animator.Play("LungeAttack", 2, 0);
     }
 
     void UseSkill4()
     {
         skillCooldowns[WeaponSkillNames.CripplingAttack] = Time.time + cripplingAttackCooldown;
         animator.SetBool("attacking", true);
-        animator.Play("CripplingAttack", 2, 0);
+        animator.SetTrigger("CripplingAttack");
+        //animator.SetInteger("UsingSkill", 4);
+        //state.Animator.Play("CripplingAttack", 2, 0);
     }
 
     //Methods below just call combatManager, which executes results
     public void CallSkill1(int comboNum)
     {
-        manager.ChainAttack(gameObject, enemy, comboNum);
+        manager.ChainAttack(gameObject, GetComponent<Targeting>().Enemy, comboNum);
     }
     public void CallSweepingAttack(int attackNum)
     {
-        manager.SweepingAttack(gameObject, enemy, attackNum);
+        manager.SweepingAttack(gameObject, GetComponent<Targeting>().Enemy, attackNum);
     }
     public void CallStunningAttack()
     {
-        manager.StunningAttack(gameObject, enemy);
+        manager.StunningAttack(gameObject, GetComponent<Targeting>().Enemy);
     }
     public void CallCripplingAttack(int attackNum)
     {
-        manager.CripplingAttack(gameObject, enemy, attackNum);
+        manager.CripplingAttack(gameObject, GetComponent<Targeting>().Enemy, attackNum);
+    }
+
+    public void ResetCurrentSkill()
+    {
+        animator.SetInteger("UsingSkill", 0);
     }
 }
 
