@@ -3631,7 +3631,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneGuid: 
   _serializerGuid: a8997a14-66ff-445a-b74a-7706ee225032
-  _prefabId: 1
+  _prefabId: 2
   _updateRate: 1
   _autoFreezeProxyFrames: 0
   _clientPredicted: 1
@@ -6855,6 +6855,26 @@ PrefabInstance:
       propertyPath: ShapeModule.radiusThickness
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 4805966615376588, guid: 39d86b7fb489f9949b402cb76449ec32, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4805966615376588, guid: 39d86b7fb489f9949b402cb76449ec32, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4805966615376588, guid: 39d86b7fb489f9949b402cb76449ec32, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4805966615376588, guid: 39d86b7fb489f9949b402cb76449ec32, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4805966615376588, guid: 39d86b7fb489f9949b402cb76449ec32, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -90.00001
+      objectReference: {fileID: 0}
     - target: {fileID: 4534318803784408, guid: 39d86b7fb489f9949b402cb76449ec32, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
@@ -6875,25 +6895,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90.00001
       objectReference: {fileID: 0}
-    - target: {fileID: 4805966615376588, guid: 39d86b7fb489f9949b402cb76449ec32, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
+    - target: {fileID: 199437207930952974, guid: 39d86b7fb489f9949b402cb76449ec32,
+        type: 3}
+      propertyPath: m_MaxParticleSize
+      value: 0.05
       objectReference: {fileID: 0}
-    - target: {fileID: 4805966615376588, guid: 39d86b7fb489f9949b402cb76449ec32, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
+    - target: {fileID: 199981285287470642, guid: 39d86b7fb489f9949b402cb76449ec32,
+        type: 3}
+      propertyPath: m_MinParticleSize
+      value: 0.01
       objectReference: {fileID: 0}
-    - target: {fileID: 4805966615376588, guid: 39d86b7fb489f9949b402cb76449ec32, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4805966615376588, guid: 39d86b7fb489f9949b402cb76449ec32, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 4805966615376588, guid: 39d86b7fb489f9949b402cb76449ec32, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -90.00001
+    - target: {fileID: 199981285287470642, guid: 39d86b7fb489f9949b402cb76449ec32,
+        type: 3}
+      propertyPath: m_AllowRoll
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 198563964752515286, guid: 39d86b7fb489f9949b402cb76449ec32,
         type: 3}
@@ -6954,21 +6969,6 @@ PrefabInstance:
         type: 3}
       propertyPath: ShapeModule.radiusThickness
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 199981285287470642, guid: 39d86b7fb489f9949b402cb76449ec32,
-        type: 3}
-      propertyPath: m_MinParticleSize
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 199981285287470642, guid: 39d86b7fb489f9949b402cb76449ec32,
-        type: 3}
-      propertyPath: m_AllowRoll
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 199437207930952974, guid: 39d86b7fb489f9949b402cb76449ec32,
-        type: 3}
-      propertyPath: m_MaxParticleSize
-      value: 0.05
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 39d86b7fb489f9949b402cb76449ec32, type: 3}

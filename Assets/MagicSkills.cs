@@ -133,7 +133,7 @@ public class MagicSkills : Bolt.EntityBehaviour<IPlayerCharacterState>
     public void CastFireball()
     {
         GameObject fireballClone;
-        fireballClone = Instantiate(fireballPrefab, spellOrigin.transform.position, Quaternion.identity);
+        fireballClone = BoltNetwork.Instantiate(fireballPrefab, spellOrigin.transform.position, Quaternion.identity);
         fireballClone.GetComponent<FireballScript>().enemy = gameObject.GetComponent<Targeting>().Enemy;
         fireballClone.GetComponent<FireballScript>().caster = gameObject;
     }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireballScript : MonoBehaviour
+public class FireballScript : Bolt.EntityBehaviour<IFireballState>
 {
     public GameObject caster;
     public GameObject enemy;
@@ -13,12 +13,12 @@ public class FireballScript : MonoBehaviour
 
     public GameObject combatManager;
 
-    private void Start()
+    public override void Attached()
     {
         combatManager = GameObject.FindGameObjectWithTag("CombatManager");
     }
 
-    private void Update()
+    public override void SimulateOwner()
     {
         Vector3 targetPosition = enemy.transform.position;
         this.transform.LookAt(targetPosition);
@@ -35,7 +35,7 @@ public class FireballScript : MonoBehaviour
         {
             var instanceExplosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
             combatManager.GetComponent<MagicSkillsManager>().Fireball(gameObject, enemy);
-            Destroy(gameObject);
+            BoltNetwork.Destroy(gameObject);
             Destroy(instanceExplosion, 2f);
         } 
     }
