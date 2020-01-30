@@ -19,12 +19,14 @@ public class PlayerUI : Bolt.EntityBehaviour<IPlayerCharacterState>
     public RectTransform enduranceFiller;
     public TextMeshProUGUI healthDisplay;
 
+    public GameObject healthUIelement;
+
     // Start is called before the first frame update
     public override void Attached()
     {
         if (entity.IsOwner)
         {
-            healthDisplay = gameObject.GetComponentInChildren<TextMeshProUGUI>();
+            healthDisplay = healthUIelement.GetComponentInChildren<TextMeshProUGUI>();
             movement = gameObject.GetComponentInParent<Movement>();
             status = gameObject.GetComponentInParent<Status>();
             weaponSkills = gameObject.GetComponentInParent<WeaponSkills>();
