@@ -104,8 +104,7 @@
             "$type": "Bolt.Compiler.PropertyStateSettings, bolt.compiler",
             "ExtrapolationErrorTolerance": 0.1,
             "_ExtrapolationCorrectionFrames": 3,
-            "ExtrapolationMaxFrames": 9,
-            "MecanimDirection": 1
+            "ExtrapolationMaxFrames": 9
           }
         },
         {
@@ -148,8 +147,7 @@
             "SmoothingAlgorithm": 1,
             "ExtrapolationErrorTolerance": 0.1,
             "_ExtrapolationCorrectionFrames": 3,
-            "ExtrapolationMaxFrames": 9,
-            "MecanimDirection": 1
+            "ExtrapolationMaxFrames": 9
           }
         },
         {
@@ -166,8 +164,7 @@
             "$type": "Bolt.Compiler.PropertyStateSettings, bolt.compiler",
             "ExtrapolationErrorTolerance": 0.1,
             "_ExtrapolationCorrectionFrames": 3,
-            "ExtrapolationMaxFrames": 9,
-            "MecanimDirection": 1
+            "ExtrapolationMaxFrames": 9
           }
         },
         {
@@ -185,8 +182,7 @@
             "$type": "Bolt.Compiler.PropertyStateSettings, bolt.compiler",
             "ExtrapolationErrorTolerance": 0.1,
             "_ExtrapolationCorrectionFrames": 3,
-            "ExtrapolationMaxFrames": 9,
-            "MecanimDirection": 1
+            "ExtrapolationMaxFrames": 9
           }
         },
         {
@@ -203,8 +199,7 @@
             "$type": "Bolt.Compiler.PropertyStateSettings, bolt.compiler",
             "ExtrapolationErrorTolerance": 0.1,
             "_ExtrapolationCorrectionFrames": 3,
-            "ExtrapolationMaxFrames": 9,
-            "MecanimDirection": 1
+            "ExtrapolationMaxFrames": 9
           }
         },
         {
@@ -221,8 +216,7 @@
             "ExtrapolationErrorTolerance": 0.1,
             "_ExtrapolationCorrectionFrames": 3,
             "ExtrapolationMaxFrames": 9,
-            "MecanimMode": 1,
-            "MecanimDirection": 1
+            "MecanimMode": 1
           }
         },
         {
@@ -239,8 +233,7 @@
             "$type": "Bolt.Compiler.PropertyStateSettings, bolt.compiler",
             "ExtrapolationErrorTolerance": 0.1,
             "_ExtrapolationCorrectionFrames": 3,
-            "ExtrapolationMaxFrames": 9,
-            "MecanimDirection": 1
+            "ExtrapolationMaxFrames": 9
           }
         },
         {
@@ -259,8 +252,7 @@
             "$type": "Bolt.Compiler.PropertyStateSettings, bolt.compiler",
             "ExtrapolationErrorTolerance": 0.1,
             "_ExtrapolationCorrectionFrames": 3,
-            "ExtrapolationMaxFrames": 9,
-            "MecanimDirection": 1
+            "ExtrapolationMaxFrames": 9
           }
         },
         {
@@ -287,7 +279,6 @@
             "_ExtrapolationCorrectionFrames": 3,
             "ExtrapolationMaxFrames": 9,
             "MecanimMode": 1,
-            "MecanimDirection": 1,
             "MecanimDamping": 0.05
           }
         },
@@ -315,7 +306,6 @@
             "_ExtrapolationCorrectionFrames": 3,
             "ExtrapolationMaxFrames": 9,
             "MecanimMode": 1,
-            "MecanimDirection": 1,
             "MecanimDamping": 0.05
           }
         },
@@ -333,8 +323,7 @@
             "ExtrapolationErrorTolerance": 0.1,
             "_ExtrapolationCorrectionFrames": 3,
             "ExtrapolationMaxFrames": 9,
-            "MecanimMode": 1,
-            "MecanimDirection": 1
+            "MecanimMode": 1
           }
         },
         {
@@ -351,8 +340,7 @@
             "ExtrapolationErrorTolerance": 0.1,
             "_ExtrapolationCorrectionFrames": 3,
             "ExtrapolationMaxFrames": 9,
-            "MecanimMode": 1,
-            "MecanimDirection": 1
+            "MecanimMode": 1
           }
         },
         {
@@ -370,7 +358,6 @@
             "_ExtrapolationCorrectionFrames": 3,
             "ExtrapolationMaxFrames": 9,
             "MecanimMode": 1,
-            "MecanimDirection": 1,
             "MecanimLayer": 1
           }
         },

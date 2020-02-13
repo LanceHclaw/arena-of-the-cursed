@@ -10,16 +10,24 @@ public class PlayerUI : Bolt.EntityBehaviour<IPlayerCharacterState>
     public List<WeaponSkillCD> weaponSkillFillers = new List<WeaponSkillCD>();
     public List<MagicSkillCD> magicSkillFillers = new List<MagicSkillCD>();
 
+    [Header("Don't Assign")]
     public WeaponSkills weaponSkills;
     public MagicSkills magicSkills;
     public Status status;
     public Movement movement;
+    public GameObject target;
 
+    [Header("Assign")]
     public RectTransform healthFiller;
+    public RectTransform enemyHealthFiller;
     public RectTransform enduranceFiller;
     public TextMeshProUGUI healthDisplay;
+    public TextMeshProUGUI enemyHealthDisplay;
 
     public GameObject healthUIelement;
+    public GameObject enemyHealthUIelement;
+
+    private float enemyHealthPercentage;
 
     // Start is called before the first frame update
     public override void Attached()
@@ -27,6 +35,7 @@ public class PlayerUI : Bolt.EntityBehaviour<IPlayerCharacterState>
         if (entity.IsOwner)
         {
             healthDisplay = healthUIelement.GetComponentInChildren<TextMeshProUGUI>();
+            enemyHealthDisplay = enemyHealthUIelement.GetComponentInChildren<TextMeshProUGUI>();
             movement = gameObject.GetComponentInParent<Movement>();
             status = gameObject.GetComponentInParent<Status>();
             weaponSkills = gameObject.GetComponentInParent<WeaponSkills>();
@@ -64,6 +73,11 @@ public class PlayerUI : Bolt.EntityBehaviour<IPlayerCharacterState>
         healthDisplay.text = status.localHealth.ToString();
         enduranceFiller.localScale = new Vector3(movement.endurancePercentage, 1f, 1f);
         healthFiller.localScale = new Vector3(1f, status.healthPercentage, 1f);
+
+        target = gameObject.GetComponentInParent<Targeting>().Enemy;
+        enemyHealthDisplay.text = target.GetComponent<Status>().localHealth.ToString();
+        enemyHealthPercentage = target.GetComponent<Status>().localHealth / 2000f;
+        enemyHealthFiller.localScale = new Vector3(enemyHealthPercentage, 1f, 1f);
     }
 
     private void SetupArrays()
