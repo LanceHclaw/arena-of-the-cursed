@@ -19,6 +19,8 @@ public class AssignPlayers : MonoBehaviour
 
             allAssigned = true;
         }
+        if (allAssigned)
+            Destroy(dummy);
     }
 
     /*private void Update()

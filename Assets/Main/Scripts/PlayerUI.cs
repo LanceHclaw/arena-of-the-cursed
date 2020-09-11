@@ -18,6 +18,10 @@ public class PlayerUI : Bolt.EntityBehaviour<IPlayerCharacterState>
     public GameObject target;
 
     [Header("Assign")]
+    public GameObject escapeMenu;
+    public GameObject escapeMenuContinue;
+    public GameObject escapeMenuLoser;
+    public GameObject escapeMenuWinner;
     public RectTransform healthFiller;
     public RectTransform enemyHealthFiller;
     public RectTransform enduranceFiller;
@@ -78,6 +82,27 @@ public class PlayerUI : Bolt.EntityBehaviour<IPlayerCharacterState>
         enemyHealthDisplay.text = target.GetComponent<Status>().localHealth.ToString();
         enemyHealthPercentage = target.GetComponent<Status>().localHealth / 2000f;
         enemyHealthFiller.localScale = new Vector3(enemyHealthPercentage, 1f, 1f);
+
+        #region escapeMenu
+        if (Input.GetKeyDown(KeyCode.Escape) && (target.GetComponent<Status>().localHealth > 0 || (status.localHealth > 0)))
+        {
+            if (escapeMenu.activeSelf == false)
+                escapeMenu.SetActive(true);
+            else escapeMenu.SetActive(false);
+        }
+        if (status.localHealth <= 0)
+        {
+            escapeMenu.SetActive(true);
+            escapeMenuContinue.SetActive(false);
+            escapeMenuLoser.SetActive(true);
+        }
+        if (target.GetComponent<Status>().localHealth <= 0)
+        {
+            escapeMenu.SetActive(true);
+            escapeMenuContinue.SetActive(false);
+            escapeMenuWinner.SetActive(true);
+        }
+        #endregion
     }
 
     private void SetupArrays()
@@ -97,6 +122,16 @@ public class PlayerUI : Bolt.EntityBehaviour<IPlayerCharacterState>
         //Debug.Log("Added magicSkill");
         magicSkillFillers.Add(new MagicSkillCD { filler = buttonFillers[6], name = MagicSkillNames.Withstand });
         //Debug.Log("Added magicSkill");
+    }
+
+    public void Continue()
+    {
+        escapeMenu.SetActive(false);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
 public struct WeaponSkillCD
