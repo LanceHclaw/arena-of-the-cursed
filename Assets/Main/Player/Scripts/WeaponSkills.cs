@@ -12,9 +12,6 @@ public class WeaponSkills : Bolt.EntityBehaviour<IPlayerCharacterState> {
     public float stunningAttackCooldown = 12f;
     public float cripplingAttackCooldown = 15f;
 
-    [Header("UI EscapeMenu")]
-    public GameObject escapeMenu;
-
     MeleeSkillsManager manager;
     
 
