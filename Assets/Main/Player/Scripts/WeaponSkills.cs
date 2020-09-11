@@ -13,6 +13,7 @@ public class WeaponSkills : Bolt.EntityBehaviour<IPlayerCharacterState> {
     public float cripplingAttackCooldown = 15f;
 
     MeleeSkillsManager manager;
+    
 
 	public override void Attached () {
         skillCooldowns.Add(WeaponSkillNames.SweepingAttack, Time.time);
